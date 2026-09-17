@@ -14,9 +14,10 @@
 `timescale 1 ns / 1 ns
 
 module tb_adder;
-   reg  [5:0]  ctr;   // This is a 6-bit wide vector
+   reg  [6:0]  ctr;   // This is a 6-bit wide vector
    wire  [2:0] a_test, b_test;
    wire [6:0]  segs_test;
+   wire sel;
    
    
 
@@ -29,12 +30,13 @@ always
    #5   ctr = ctr + 1;   
 
    
-assign a_test = ctr[2:0];  
-assign b_test = ctr[5:3];
+assign a_test = ctr[3:1];  
+assign b_test = ctr[6:4];
+assign sel = ctr[0];
 
 
 // instantiate the design
-adder adder_ckt(a_test, b_test,segs_test);
+adder adder_ckt(a_test, b_test, sel, segs_test);
 
 
 endmodule
